@@ -4,22 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Nombre de tu web]</title>
+    <title>[Nombre de tu Web]</title>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" href="./index.css">
 </head>
 
-<body>
+<body class="light">
     <div id="page-container">
-        <div id="top-navbar"></div>
+        <div id="top-navbar">
+            <ul>
+                <li><a href="#tab1" role="button">[Menu 1]</a></li>
+                <li><a href="#tab2" role="button">[Menu 2]</a></li>
+            </ul>
+            <div id="app-logo">
+                <span class="material-icons">favorite_border</span>
+            </div>
+            <ul>
+                <li><a href="#tab3" role="button">[Menu 3]</a></li>
+                <li><a href="#tab4" role="button">[Menu 4]</a></li>
+            </ul>
+        </div>
         <div id="main-container">
-            <div id="side-menu"></div>
+            <div id="side-menu">
+                <ul>
+                    <li><a href="#tab5" role="button">[Side Menu 1]</a></li>
+                    <li><a href="#tab6" role="button">[Side Menu 2]</a></li>
+                    <li><a href="#tab7" role="button">[Side Menu 3]</a></li>
+                    <li><a href="#tab8" role="button">[Side Menu 4]</a></li>
+                    <li><a href="#tab9" role="button">[Side Menu 5]</a></li>
+                </ul>
+            </div>
             <div id="main-page-content">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, officia? Ea quaerat repellat sed,
-                voluptates consequuntur voluptatibus reiciendis labore adipisci obcaecati autem dignissimos porro
-                exercitationem, veniam, illum commodi voluptatem nam!
+                <div id="tab1" class="tab-page">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, officia? Ea quaerat repellat sed,
+                    voluptates consequuntur voluptatibus reiciendis labore adipisci obcaecati autem dignissimos porro
+                    exercitationem, veniam, illum commodi voluptatem nam!
+                </div>
+                <div id="tab2" class="tab-page">TAB2</div>
+                <div id="tab3" class="tab-page">TAB3</div>
+                <div id="tab4" class="tab-page">TAB4</div>
+                <div id="tab5" class="tab-page">TAB5</div>
+                <div id="tab6" class="tab-page">TAB6</div>
+                <div id="tab7" class="tab-page">TAB7</div>
+                <div id="tab8" class="tab-page">TAB8</div>
+                <div id="tab9" class="tab-page">TAB9</div>
             </div>
         </div>
     </div>
+
+    <script>
+        
+
+        $(function () {
+            var clickedHeart = false;
+
+            $(".tab-page").addClass("hidden");
+            $("#tab1").removeClass("hidden");
+            $("[href = '#tab1']").parent().addClass("selected");
+
+            $("#top-navbar li, #side-menu li").on("click", function() {
+                if (!$(this).hasClass("selected")) {
+                    const pageId = $(this).children("a").first().attr("href");
+                    $("#top-navbar li, #side-menu li").removeClass("selected");
+                    $(this).addClass("selected");
+                    $(".tab-page").addClass("hidden");
+                    console.log(pageId);
+                    $(pageId).removeClass("hidden");
+                } else {
+                    console.log("Ya estás en esa pestaña");
+                }
+            });
+
+            $("#app-logo").on("click", function() {
+                $(this).toggleClass("fill");
+                const clickedHeart = $(this).hasClass("fill");
+                $(this).children("span").text(clickedHeart ? "favorite" : "favorite_border");
+                // TODO : Dark Mode con colores adecuados.
+                // Investigar un Dark Mode con buena usabilidad.
+                if (clickedHeart) {
+                    $("body").removeClass("light");
+                    $("body").addClass("dark");
+                } else {
+                    $("body").removeClass("dark");
+                    $("body").addClass("light");
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>
