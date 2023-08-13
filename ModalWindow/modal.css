@@ -1,0 +1,30 @@
+.modal-window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(110, 111, 122, 0.5);
+    z-index: 100;
+}
+
+.modal-window-content {
+    border-radius: 5px;
+    width: 75%;
+    max-width: 1000px;
+    padding: 1.5rem;
+    background-color: white;
+    z-index: 101;
+    position: relative;
+    box-shadow: 0px 10px 10px rgb(146, 146, 146);
+}
+
+.modal-window-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
